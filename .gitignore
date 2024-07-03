@@ -2,5 +2,5 @@
 .idea/
 
 # Test files
-test-files/
+test/
 qbittorrent/
