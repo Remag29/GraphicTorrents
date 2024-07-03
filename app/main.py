@@ -6,11 +6,11 @@ def display_table(data):
 
 
 # URL de la requête
-url = "http://localhost:8080/api/v2/auth/login"
+url = "http://qbittorrent/api/v2/auth/login"
 
 # En-têtes de la requête
 headers = {
-    'Referer': 'http://localhost:8080'
+    'Referer': 'http://qbittorrent'
 }
 
 # Données de la requête
@@ -30,7 +30,7 @@ print(response.text)  # Corps de la réponse
 cookie = response.headers['Set-Cookie'].split(';')[0].split('=')[1]
 print(cookie)
 
-url = "http://localhost:8080/api/v2/torrents/info?&sort=ratio"
+url = "http://qbittorrent/api/v2/torrents/info?&sort=ratio"
 
 # Cookies de la requête
 cookies = {

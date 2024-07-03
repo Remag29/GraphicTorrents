@@ -1,6 +1,13 @@
-FROM ubuntu:latest
+FROM python:3.12
 LABEL authors="remag29"
 
-RUN apt-get update && apt-get install -y python3.12 python3.12-dev
+COPY requirements.txt /app/requirements.txt
 
-RUN pip install -r requirements.txt
+WORKDIR /app
+
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
+
+COPY ./app /app
+
+CMD ["python", "/app/main.py"]
