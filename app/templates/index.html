@@ -9,22 +9,24 @@
 <h1>Liste des Torrents</h1>
 <table>
     <thead>
-        <tr>
-            <th>Name</th>
-            <th>Size</th>
-            <th>Active time</th>
-            <th>Upload</th>
-        </tr>
+    <tr>
+        <th>Name</th>
+        <th>Size</th>
+        <th>Active time</th>
+        <th>Upload</th>
+        <th>Score Torrent</th> <!-- Nouvelle colonne -->
+    </tr>
     </thead>
     <tbody>
-        {% for torrent in torrents %}
-        <tr>
-            <td>{{ torrent.name }}</td>
-            <td>{{ torrent.size }}</td>
-            <td>{{ torrent.time_active }}</td>
-            <td>{{ torrent.uploaded }}</td>
-        </tr>
-        {% endfor %}
+    {% for torrent in torrents %}
+    <tr>
+        <td>{{ torrent.name }}</td>
+        <td>{{ torrent.size }}</td>
+        <td>{{ torrent.time_active }}</td>
+        <td>{{ torrent.uploaded }}</td>
+        <td>{{ torrent.score_torrent }}</td> <!-- Affichage du score -->
+    </tr>
+    {% endfor %}
     </tbody>
 </table>
 </body>
