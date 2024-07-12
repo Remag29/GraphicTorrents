@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Mon Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<h1>Liste des Torrents</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Size</th>
+            <th>Active time</th>
+            <th>Upload</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for torrent in torrents %}
+        <tr>
+            <td>{{ torrent.name }}</td>
+            <td>{{ torrent.size }}</td>
+            <td>{{ torrent.time_active }}</td>
+            <td>{{ torrent.uploaded }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,97 @@
+/* Dark Mode Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    text-align: center;
+    color: #bb86fc;
+}
+
+/* Table Styles */
+table {
+    width: 80%;
+    max-width: 1000px;
+    border-collapse: collapse;
+    margin: 20px auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+thead {
+    background-color: #bb86fc;
+    color: #121212;
+}
+
+thead th {
+    padding: 15px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+tbody tr {
+    border-bottom: 1px solid #333;
+    transition: background-color 0.3s;
+}
+
+tbody tr:hover {
+    background-color: #333;
+}
+
+tbody td {
+    padding: 15px;
+    text-align: center;
+}
+
+tbody td:first-child {
+    text-align: left;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+    }
+
+    thead {
+        display: none;
+    }
+
+    tbody, tbody tr, tbody td {
+        display: block;
+        width: 100%;
+    }
+
+    tbody tr {
+        margin-bottom: 10px;
+    }
+
+    tbody td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        width: calc(50% - 20px);
+        text-align: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+}

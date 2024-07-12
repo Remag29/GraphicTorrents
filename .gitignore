@@ -1,6 +1,9 @@
 # InteliJ IDEA
 .idea/
+venv/
 
 # Test files
-test/
-qbittorrent/
+tests/
+
+# Env variables
+.env

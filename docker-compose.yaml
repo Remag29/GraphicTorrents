@@ -21,8 +21,18 @@ services:
   graphic-torrent:
     image: graphic-torrent:latest
     container_name: graphic-torrent
+    build:
+        context: .
+        dockerfile: Dockerfile
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Paris
+      - QB_URL=${QB_URL}
+      - QB_USERNAME=${QB_USERNAME}
+      - QB_PASSWORD=${QB_PASSWORD}
+#      - FLASK_ENV=development
+#      - FLASK_DEBUG=1
+    ports:
+      - 5000:5000
     restart: no
