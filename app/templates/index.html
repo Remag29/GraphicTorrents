@@ -4,9 +4,14 @@
     <meta charset="utf-8">
     <title>Mon Application</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 </head>
 <body>
-<h1>Liste des Torrents</h1>
+<div class="header-bar">
+    <h1>Liste des Torrents</h1>
+</div>
 <table>
     <thead>
     <tr>
@@ -14,7 +19,7 @@
         <th>Size</th>
         <th>Active time</th>
         <th>Upload</th>
-        <th>Score Torrent</th> <!-- Nouvelle colonne -->
+        <th>Score Torrent</th>
     </tr>
     </thead>
     <tbody>
@@ -24,10 +29,29 @@
         <td>{{ torrent.size }}</td>
         <td>{{ torrent.time_active }}</td>
         <td>{{ torrent.uploaded }}</td>
-        <td>{{ torrent.score_torrent }}</td> <!-- Affichage du score -->
+        <td>{{ torrent.score_torrent }}</td>
     </tr>
     {% endfor %}
     </tbody>
 </table>
+<script>
+    $(document).ready(function () {
+        $('table').DataTable({
+            "dom": '<"top"f>rt<"bottom"lp><"clear">',
+            "pagingType": "full_numbers",
+            "language": {
+                "search": "Rechercher:",
+                "lengthMenu": "Afficher _MENU_ entrées",
+                "info": "Affichage de _START_ à _END_ sur _TOTAL_ entrées",
+                "paginate": {
+                    "first": "Premier",
+                    "last": "Dernier",
+                    "next": "Suivant",
+                    "previous": "Précédent"
+                }
+            }
+        });
+    });
+</script>
 </body>
 </html>
