@@ -34,10 +34,14 @@ def index():
 
         if auth_response.status_code == 403:
             current_app.logger.error("IP de l'utilisateur bannie pour trop de tentatives de connexion échouées")
+            # Close the session
+            session.close()
             return "Accès refusé", 403
         elif auth_response.status_code != 200:
             current_app.logger.error(
                 f"Échec de l'authentification : {auth_response.status_code} - {auth_response.text}")
+            # Close the session
+            session.close()
             return "Échec de l'authentification", 500
 
         # Utilisation du cookie SID pour les requêtes nécessitant une authentification
@@ -45,10 +49,15 @@ def index():
         if not sid_cookie:
             current_app.logger.error("Échec de récupération du cookie SID")
             current_app.logger.debug(dict(auth_response.cookies))
+            # Close the session
+            session.close()
             return "Échec de récupération du cookie SID", 500
 
         cookies = {'SID': sid_cookie}
         response = session.get(f'{QB_URL}/api/v2/torrents/info', cookies=cookies)
+
+        # Close the session
+        session.close()
 
         if response.status_code != 200:
             current_app.logger.error(f"Erreur de récupération des torrents : {response.status_code} - {response.text}")
@@ -64,8 +73,9 @@ def index():
             # Convertir uploadé de bytes en Go
             'uploaded': convert_size_humanreadable(torrent['uploaded']),
             # Calcule du score torrent
-            'score_torrent': f"{(torrent['uploaded'] / torrent['size']) / (torrent['time_active'] / 86400) if torrent['time_active'] > 0 else 0:.4f}"
+            'score_torrent': f"{(torrent['uploaded'] / torrent['size']) / (torrent['time_active'] / 86400) * 100 if torrent['time_active'] > 0 else 0:.4f}"
         } for torrent in response.json()]
+
         return render_template('index.html', torrents=torrents)
 
     except Exception as e:

@@ -60,6 +60,10 @@ thead th {
     font-size: 0.9em;
 }
 
+tbody {
+    background-color: #1e1e1e; /* Couleur de fond sombre */
+}
+
 tbody tr {
     border-bottom: 1px solid #333;
     transition: background-color 0.3s;
